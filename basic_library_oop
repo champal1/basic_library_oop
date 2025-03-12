@@ -1,0 +1,59 @@
+import random
+
+can_borrow = ["Open", "Closed"]
+
+class Book:
+    def __init__(self, title=None, author=None):
+        self.title = title
+        self.author = author
+
+class Libary(Book):
+    List_of_books = []
+
+    def adding_book(self):
+        author = input("Enter author: ")
+        title = input("Enter title: ")
+        added_book = Book(title, author)
+        self.List_of_books.append(added_book)
+        print(f"You have added {added_book.title} by {added_book.author} into your libary")
+
+    def remove_book(self):
+        ask_del = print("What book do you want to remove: ")
+        author_delete = input("Enter author: ")
+        title_delete = input("Enter title: ")
+        for book in self.List_of_books:
+            if book.title == title_delete and book.author == author_delete:
+                self.List_of_books.remove(book)
+                print(f"We have deleted {book.title} by {book.author} from your libary")
+                return
+        else:
+            print("That isn't a book in your libary")
+
+    def borrow_book(self):
+        ask_to_borrow = print("When is the author name and title you want to borrow: ")
+        borrow_author = input("Enter author: ")
+        borrow_title = input("Enter title: ")
+        borrow_book = Book(borrow_title, borrow_author)
+        print(f"The book called {borrow_book.title} by author {borrow_book.author} is " + random.choice(can_borrow))
+        pick_one = random.choice(can_borrow)
+        if pick_one == "Open":
+            print("You can borrow this book since it is avaiable")
+        elif pick_one == "Closed":
+            print("The book is already being borrowed by someone else, come back again later")
+
+        
+
+    def returning_book(self):
+        return_book = print("What book would you want to return: ")
+        return_author = input("Enter author: ")
+        return_title = input("Enter title: ")
+        returned_book = Book(return_title, return_author)
+        self.List_of_books.append(returned_book)
+        print(f"You have returned the {return_title} by {return_author} to the libray, thank you.")
+
+lib = Libary()
+#lib.adding_book()
+
+#lib.remove_book()
+#lib.borrow_book()
+#lib.returning_book()
